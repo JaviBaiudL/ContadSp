@@ -1,0 +1,33 @@
+﻿@page "/altacategoria"
+@using ContadSp.Modelos  <!-- Importa los modelos -->
+@using ContadSp.Repositorios  <!-- Importa los repositorios -->
+@inject IRepositorio<Modelo_ABM_Categoria> repositorio
+
+<h3>AltaCategoria</h3>
+
+<!-- Crea un formulario de edición con el modelo de categoría y un manejador para cuando el formulario es válido -->
+<EditForm Model="@categoria" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />  <!-- Validador para las anotaciones de datos del modelo -->
+    <ValidationSummary />  <!-- Resumen de validación para mostrar errores -->
+
+    <!-- Grupo de formulario para la entrada de la categoría -->
+    <div class="form-group">
+        <label for="categoria">Categoria:</label>
+        <!-- Campo de entrada de texto para la categoría, vinculado al modelo de categoría -->
+        <InputText id="categoria" class="form-control" @bind-Value="categoria.categoria" />
+    </div>
+
+    <!-- Botón para enviar el formulario -->
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</EditForm>
+
+@code {
+    private Modelo_ABM_Categoria categoria = new Modelo_ABM_Categoria();  <!-- Crea una nueva instancia del modelo de categoría -->
+
+    <!-- Manejador para cuando el formulario es válido -->
+    private async Task HandleValidSubmit()
+    {
+        await repositorio.Agregar(categoria);  <!-- Agrega la nueva categoría al repositorio -->
+        categoria = new Modelo_ABM_Categoria(); // resetea el formulario para una nueva entrada
+    }
+}

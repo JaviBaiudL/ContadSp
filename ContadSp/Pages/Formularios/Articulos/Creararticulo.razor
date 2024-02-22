@@ -1,0 +1,70 @@
+﻿@page "/crear-articulo"
+@using Microsoft.AspNetCore.Components.Forms
+@using ContadSp.Modelos
+@using ContadSp.Repositorios
+@using ContadSp.Data
+@inject IRepositorio<Modelo_ABM_Categoria> RepositorioCategorias
+@inject IRepositorio<Modelo_Articulos> RepositorioArticulos
+
+<h3>Crear Artículo</h3>
+
+<EditForm Model="nuevoArticulo" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    @if (categorias == null)
+    {
+        <p>Cargando...</p>
+    }
+    else
+    {
+        <InputSelect id="categoria" @bind-Value="nuevoArticulo.id_categoria">
+            <option value="">Selecciona una categoría</option>
+            @foreach (var categoria in categorias)
+            {
+                <option value="@categoria.id">@categoria.categoria</option>
+            }
+        </InputSelect>
+    }
+
+    <InputText id="descripcion" @bind-Value="nuevoArticulo.descripcion" />
+    <InputNumber id="monto_aprox" @bind-Value="nuevoArticulo.monto_aprox" />
+
+    <button type="submit">Crear</button>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(mensajeError))
+{
+    <div class="alert alert-danger" role="alert">
+        @mensajeError
+    </div>
+}
+
+@code {
+    private Modelo_Articulos nuevoArticulo = new Modelo_Articulos();
+    private IEnumerable<Modelo_ABM_Categoria> categorias;
+    private string mensajeError = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await RepositorioCategorias.ObtenerTodo();
+        if (result != null)
+        {
+            categorias = result;
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        try
+        {
+            await RepositorioArticulos.Agregar(nuevoArticulo);
+            nuevoArticulo = new Modelo_Articulos();
+            mensajeError = string.Empty;
+        }
+        catch (Exception ex)
+        {
+            mensajeError = "Hubo un error al crear el artículo: " + ex.Message;
+        }
+    }
+}

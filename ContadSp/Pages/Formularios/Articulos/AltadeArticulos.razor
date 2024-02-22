@@ -1,0 +1,35 @@
+﻿@* @page "/crear-articulo"
+
+@using ContadSp.Modelos
+@using ContadSp.Repositorios
+@inject IRepositorio<Modelo_Articulos> RepositorioArticulos
+@inject IRepositorio<Modelo_ABM_Categoria> RepositorioCategorias
+
+    <EditForm Model="nuevoArticulo" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <label for="descripcion">Descripción:</label>
+    <InputText id="descripcion" @bind-Value="nuevoArticulo.descripcion" />
+
+
+
+
+
+
+    <button type="submit">Crear Artículo</button>
+</EditForm>
+
+@code{
+    protected Modelo_Articulos nuevoArticulo = new Modelo_Articulos();
+
+    private async Task HandleValidSubmit()
+    {
+        await RepositorioArticulos.Agregar(nuevoArticulo);
+        nuevoArticulo = new Modelo_Articulos();
+    }
+
+
+
+
+} *@
