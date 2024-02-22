@@ -1,0 +1,54 @@
+﻿@page "/listacategorias"
+@using ContadSp.Modelos
+@using ContadSp.Repositorios
+@inject IRepositorio<Modelo_ABM_Categoria> repositorio
+
+<h3>Lista de Categorias</h3>
+
+@if (categorias == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Categoria</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var categoria in categorias.ToList()) // Convertir a List
+            {
+                <tr>
+                    <td>@categoria.categoria</td>
+                    <td>
+                        <a href="editar-categoria/@categoria.id" class="btn btn-success btn-sm"><span class="oi oi-plus" aria-hidden="true"></span> Editar</a>
+                        <button class="btn btn-danger" @onclick="() => Eliminar(categoria)">Eliminar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Modelo_ABM_Categoria> categorias;
+
+    protected override async Task OnInitializedAsync()
+    {
+        categorias = (await repositorio.ObtenerTodo()).ToList(); // Convertir a List
+    }
+
+    private void Editar(Modelo_ABM_Categoria categoria)
+    {
+        // Aquí puedes redirigir al usuario a la página de edición con la categoría seleccionada
+    }
+
+    private async Task Eliminar(Modelo_ABM_Categoria categoria)
+    {
+        await repositorio.Eliminar(categoria.id); // Pasar el Id en lugar del objeto completo
+        categorias = (await repositorio.ObtenerTodo()).ToList(); // Actualiza la lista de categorías
+    }
+}

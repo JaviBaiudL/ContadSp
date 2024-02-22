@@ -1,0 +1,74 @@
+﻿@page "/lista-articulos"
+@using ContadSp.Modelos
+@using ContadSp.Repositorios
+
+@inject IRepositorio<Modelo_ABM_Categoria> Categorias
+@inject IRepositorio<Modelo_Articulos> RepositorioArticulos
+
+
+
+
+<h3>Lista de Artículos</h3>
+
+@if (articulos == null)
+{
+    <p>Cargando...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th>Monto Aproximado</th>
+                <th>Fecha Último Monto</th>
+                <th>Categoría</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var articulo in articulos)
+            {
+                <tr>
+                    <td>@articulo.descripcion</td>
+                    <td>@articulo.monto_aprox</td>
+                    <td>@articulo.fecha_ultimo_monto</td>
+                    <td>@(articulo.Categoria != null ? articulo.Categoria.categoria : "Sin categoría")</td>
+
+                    <td>
+                        @*<button class="btn btn-primary" @onclick="() => EditarArticulo(articulo.id)">Editar</button>*@
+                        <a href="editar-articulo/@articulo.id" class="btn btn-success btn-sm"><span class="oi oi-plus" aria-hidden="true"></span> Editar</a>
+                        <button class="btn btn-danger" @onclick="() => EliminarArticulo(articulo.id)">Eliminar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+ @code {
+        private IEnumerable<Modelo_Articulos> articulos;
+
+        
+
+        protected override async Task OnInitializedAsync()
+        {
+            articulos = await RepositorioArticulos.ObtenerTodo();
+        }
+
+
+    private void EditarArticulo(int id)
+    {
+        // Aquí puedes redirigir a la página de edición con el ID del artículo
+        // NavigationManager.NavigateTo($"/editar-articulo/{id}");
+    }
+
+    private async Task EliminarArticulo(int id)
+    {
+        // Aquí puedes llamar al método de eliminación del repositorio
+        await RepositorioArticulos.Eliminar(id);
+        // Y luego actualizar la lista de artículos
+        articulos = await RepositorioArticulos.ObtenerTodo();
+    }
+}

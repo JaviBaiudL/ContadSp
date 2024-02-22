@@ -1,0 +1,50 @@
+﻿@page "/editar-articulo/{id}"
+@using ContadSp.Modelos
+@using ContadSp.Repositorios
+@inject IRepositorio<Modelo_Articulos> RepositorioArticulos
+@inject NavigationManager NavigationManager
+
+<h3>Editar Artículo</h3>
+
+<EditForm Model="articulo" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label for="descripcion">Descripción:</label>
+        <InputTextArea id="descripcion" @bind-Value="articulo.descripcion" />
+    </div>
+
+    <div>
+        <label for="monto_aprox">Monto Aproximado:</label>
+        <InputNumber id="monto_aprox" @bind-Value="articulo.monto_aprox" />
+    </div>
+
+    <div>
+        <label for="fecha_ultimo_monto">Fecha Último Monto:</label>
+        <InputDate id="fecha_ultimo_monto" @bind-Value="articulo.fecha_ultimo_monto" />
+    </div>
+
+    
+
+    <button type="submit">Guardar cambios</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public string id { get; set; }
+
+    private Modelo_Articulos articulo;
+
+    protected override async Task OnInitializedAsync()
+    {
+        int articuloId = int.Parse(id);
+        articulo = await RepositorioArticulos.Obtener(articuloId);
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        await RepositorioArticulos.Actualizar(articulo);
+        NavigationManager.NavigateTo("/lista-articulos");
+    }
+}
