@@ -1,0 +1,28 @@
+﻿@page "/agregarUM"
+@using ContadSp.Modelos  
+@using ContadSp.Repositorios 
+@inject IRepositorio<Modelo_Unidad_Medida> repositorio
+
+<h3>Cargar unidad de medida</h3>
+
+<EditForm Model="@unidad_medida" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    
+    <div class="form-group">
+        <label for="unidad">Unidad de medida:</label>
+        <InputText id="unidad" class="form-control" @bind-Value="unidad_medida.unidad" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</EditForm>
+
+@code {
+    private Modelo_Unidad_Medida unidad_medida = new Modelo_Unidad_Medida();
+ 
+    private async Task HandleValidSubmit()
+    {
+        await repositorio.Agregar(unidad_medida);
+        unidad_medida = new Modelo_Unidad_Medida();
+    }
+}

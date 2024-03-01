@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using ContadSp.Data;
+using ContadSp.Modelos;
 using ContadSp.Repositorios;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
@@ -9,7 +12,7 @@ using ContadSp.Data;
 
 public class Repositorio<T> : IRepositorio<T> where T : class
 {
-    private readonly ContadSpContext _context;
+    protected readonly ContadSpContext _context;
     private readonly DbSet<T> _dbSet;
 
     public Repositorio(ContadSpContext context)
@@ -21,6 +24,11 @@ public class Repositorio<T> : IRepositorio<T> where T : class
     public async Task<IEnumerable<T>> ObtenerTodo()
     {
         return await _dbSet.ToListAsync();
+    }
+
+    public virtual async Task<IEnumerable<T>> ObtenerTodoConCategorias()
+    {
+        throw new NotImplementedException();
     }
 
     public async Task<T> Obtener(int id)
@@ -52,18 +60,49 @@ public class Repositorio<T> : IRepositorio<T> where T : class
             await _context.SaveChangesAsync();
         }
     }
-    public class RepositorioModelo_ABM_Categoria : Repositorio<Modelo_ABM_Categoria>
-    {
-        public RepositorioModelo_ABM_Categoria(ContadSpContext context) : base(context)
-        {
+}
 
-        }
+public class RepositorioModelo_ABM_Categoria : Repositorio<Modelo_ABM_Categoria>
+{
+    public RepositorioModelo_ABM_Categoria(ContadSpContext context) : base(context)
+    {
+
     }
-    public class RepositorioModelo_Articulos : Repositorio<Modelo_Articulos>
-    {
-        public RepositorioModelo_Articulos(ContadSpContext context) : base(context)
-        {
+}
 
-        }
+public class RepositorioModelo_Articulos : Repositorio<Modelo_Articulos>
+{
+    public RepositorioModelo_Articulos(ContadSpContext context) : base(context)
+    {
+
+    }
+
+    public override async Task<IEnumerable<Modelo_Articulos>> ObtenerTodoConCategorias()
+    {
+        return await _context.Modelo_Articulos.Include(a => a.Categoria).ToListAsync();
+    }
+}
+
+public class RepositorioModelo_Detalle_Pedido : Repositorio<Modelo_Detalle_Pedido>
+{
+    public RepositorioModelo_Detalle_Pedido(ContadSpContext context) : base(context)
+    {
+        
+    }
+}
+
+public class RepositorioModelo_Pedido : Repositorio<Modelo_Pedido>
+{
+    public RepositorioModelo_Pedido(ContadSpContext context) : base(context)
+    {
+        
+    }
+}
+
+public class RepositorioModelo_Unidad_Medida : Repositorio<Modelo_Unidad_Medida>
+{
+    public RepositorioModelo_Unidad_Medida(ContadSpContext context) : base(context)
+    {
+
     }
 }

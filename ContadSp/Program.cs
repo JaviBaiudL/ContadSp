@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
-//Linea de prueba
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -15,14 +13,16 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<IRepositorio<Modelo_ABM_Categoria>, Repositorio<Modelo_ABM_Categoria>>();
 builder.Services.AddScoped<IRepositorio<Modelo_Articulos>, Repositorio<Modelo_Articulos>>();
+builder.Services.AddScoped<IRepositorio<Modelo_Pedido>, Repositorio<Modelo_Pedido>>();
+builder.Services.AddScoped<IRepositorio<Modelo_Detalle_Pedido>, Repositorio<Modelo_Detalle_Pedido>>();
+builder.Services.AddScoped<IRepositorio<Modelo_Unidad_Medida>, Repositorio<Modelo_Unidad_Medida>>();
 builder.Services.AddScoped<ContadSpContext>();
-//builder.Services.AddSingleton<WeatherForecastService>();
+
+builder.Services.AddHttpClient(); // Agrega esta línea
 builder.Services.AddDbContext<ContadSpContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
     new MySqlServerVersion(new Version(8, 0, 36))
     ));
-
-
 
 var app = builder.Build();
 
@@ -30,7 +30,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 

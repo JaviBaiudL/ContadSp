@@ -90,6 +90,11 @@ main[b-60bdqxux8t] {
     top: -2px;
 }
 
+.titulo[b-p5i9qd5v1l] {
+    color: white;
+    text-align: center;
+}
+
 .nav-item[b-p5i9qd5v1l] {
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
@@ -112,15 +117,15 @@ main[b-60bdqxux8t] {
         line-height: 3rem;
     }
 
-.nav-item[b-p5i9qd5v1l]  a.active {
-    background-color: rgba(255,255,255,0.25);
-    color: white;
-}
+        .nav-item[b-p5i9qd5v1l]  a.active {
+            background-color: rgba(255,255,255,0.25);
+            color: white;
+        }
 
-.nav-item[b-p5i9qd5v1l]  a:hover {
-    background-color: rgba(255,255,255,0.1);
-    color: white;
-}
+        .nav-item[b-p5i9qd5v1l]  a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+        }
 
 @media (min-width: 641px) {
     .navbar-toggler[b-p5i9qd5v1l] {
@@ -131,10 +136,25 @@ main[b-60bdqxux8t] {
         /* Never collapse the sidebar for wide screens */
         display: block;
     }
-    
+
     .nav-scrollable[b-p5i9qd5v1l] {
         /* Allow sidebar to scroll for tall menus */
         height: calc(100vh - 3.5rem);
         overflow-y: auto;
     }
+
+    .rz-panelmenuitem[b-p5i9qd5v1l] {
+        background-color: rgba(0,0,0,0.4);
+        color: #d7d7d7;
+    }
+
+        .rz-panelmenuitem:hover[b-p5i9qd5v1l] {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .rz-panelmenuitem.rz-selected[b-p5i9qd5v1l] {
+            background-color: rgba(255,255,255,0.25);
+            color: white;
+        }
 }

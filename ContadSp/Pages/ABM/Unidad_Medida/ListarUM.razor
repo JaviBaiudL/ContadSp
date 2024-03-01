@@ -1,0 +1,49 @@
+﻿@page "/listarUM"
+@using ContadSp.Modelos
+@using ContadSp.Repositorios
+@inject IRepositorio<Modelo_Unidad_Medida> repositorio
+
+<h3>Lista de unidades de medida</h3>
+
+@if (unidades_medida == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Unidades de medida</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var unidad_medida in unidades_medida.ToList()) // Convertir a List
+            {
+                <tr>
+                    <td>@unidad_medida.unidad</td>
+                    <td>
+                        <a href="editarUM/@unidad_medida.id" class="btn btn-success"><span class="oi oi-plus" aria-hidden="true"></span> Editar</a>
+                        <button class="btn btn-danger" @onclick="() => Eliminar(unidad_medida)">Eliminar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Modelo_Unidad_Medida> unidades_medida;
+
+    protected override async Task OnInitializedAsync()
+    {
+        unidades_medida = (await repositorio.ObtenerTodo()).ToList();
+    }
+
+    private async Task Eliminar(Modelo_Unidad_Medida unidad_medida)
+    {
+        await repositorio.Eliminar(unidad_medida.id);
+        unidades_medida = (await repositorio.ObtenerTodo()).ToList();
+    }
+}

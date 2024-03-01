@@ -29,6 +29,8 @@
 
     <InputText id="descripcion" @bind-Value="nuevoArticulo.descripcion" />
     <InputNumber id="monto_aprox" @bind-Value="nuevoArticulo.monto_aprox" />
+    <InputDate id="fecha_ultimo_monto" @bind-Value="nuevoArticulo.fecha_ultimo_monto" />
+    <InputFile id="foto" OnChange="OnInputFileChange" />
 
     <button type="submit">Crear</button>
 </EditForm>
@@ -44,6 +46,7 @@
     private Modelo_Articulos nuevoArticulo = new Modelo_Articulos();
     private IEnumerable<Modelo_ABM_Categoria> categorias;
     private string mensajeError = string.Empty;
+    private IBrowserFile selectedFile;
 
     protected override async Task OnInitializedAsync()
     {
@@ -54,10 +57,52 @@
         }
     }
 
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file == null || file.Size == 0)
+        {
+            mensajeError = "Debe seleccionar un archivo para subir.";
+            return;
+        }
+
+        // Guardar el archivo seleccionado en la variable
+        selectedFile = file;
+    }
+
     private async Task HandleValidSubmit()
     {
+        if (selectedFile != null)
+        {
+            var path = Path.Combine("D:\\fotos1", selectedFile.Name);
+
+            // Verificar y crear el directorio si no existe
+            var directory = Path.GetDirectoryName(path);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            // Guardar el archivo
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await selectedFile.OpenReadStream().CopyToAsync(stream);
+            }
+
+            if (File.Exists(path))
+            {
+                // Aquí es donde se guarda la ruta en la base de datos
+                nuevoArticulo.foto = path;
+            }
+            else
+            {
+                mensajeError = "Hubo un error al guardar el archivo.";
+            }
+        }
+
         try
         {
+            // Aquí es donde se guardaría el artículo en la base de datos
             await RepositorioArticulos.Agregar(nuevoArticulo);
             nuevoArticulo = new Modelo_Articulos();
             mensajeError = string.Empty;

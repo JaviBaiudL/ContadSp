@@ -5,6 +5,10 @@ namespace ContadSp.Modelos
 {
     public class Modelo_Pedido
     {
+        public Modelo_Pedido()
+        {
+            fecha_pedido = DateOnly.FromDateTime(DateTime.Now);
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
@@ -12,7 +16,8 @@ namespace ContadSp.Modelos
         public string? destino { get; set; }
         public string? descripcion { get; set; }
         public string? usuario_solicita { get; set; }
-        public List<Modelo_Articulos>? Articulos { get; set; }
+
+        public List<Modelo_Detalle_Pedido>? Detalle_Pedido { get; set; }
 
     } 
 }

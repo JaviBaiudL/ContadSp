@@ -1,0 +1,45 @@
+﻿@page "/editarUM/{id}"
+@using ContadSp.Modelos
+@using ContadSp.Repositorios
+@using System.Linq
+@inject IRepositorio<Modelo_Unidad_Medida> repositorio
+@inject NavigationManager NavigationManager
+
+<h3>Editar unidad de medida</h3>
+
+@if (unidad_medida == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <EditForm Model="@unidad_medida" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label for="unidad_medida">Unidad de medida:</label>
+            <InputText id="unidad_medida" class="form-control" @bind-Value="unidad_medida.unidad" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </EditForm>
+}
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    private Modelo_Unidad_Medida unidad_medida;
+
+    protected override async Task OnInitializedAsync()
+    {
+        unidad_medida = await repositorio.Obtener(int.Parse(Id));
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        await repositorio.Actualizar(unidad_medida);
+        NavigationManager.NavigateTo("/listarUM");
+    }
+}

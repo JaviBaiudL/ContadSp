@@ -2,7 +2,8 @@
 @using ContadSp.Modelos
 @using ContadSp.Repositorios
 
-@* @inject IRepositorio<Modelo_Pedido> repositorio *@
+@inject IRepositorio<Modelo_Pedido> repositorioPedido
+@inject IRepositorio<Modelo_Articulos> repositorioArticulos
 
 <h3>Realizar Pedido</h3>
 
@@ -11,27 +12,60 @@
     <ValidationSummary />
  
     <div class="form-group">
-        <label for="categoria">Fecha:</label>
+        <label for="fecha">Fecha:</label>
         <InputDate id="fecha" class="form-control" @bind-Value="pedido.fecha_pedido" />
     </div>
     <div class="form-group">
-        <label for="categoria">Destino:</label>
+        <label for="destino">Destino:</label>
         <InputText id="destino" class="form-control" @bind-Value="pedido.destino" />
     </div>
     <div class="form-group">
-        <label for="categoria">Descripción:</label>
+        <label for="descripcion">Descripción:</label>
         <InputText id="descripcion" class="form-control" @bind-Value="pedido.descripcion" />
     </div>
-
+    <div class="form-group">
+        <label for="usuario">Usuario:</label>
+        <InputText id="usuario" class="form-control" @bind-Value="pedido.usuario_solicita" />
+    </div>
     <button type="submit" class="btn btn-primary">Guardar</button>
 </EditForm>
 
+<button class="btn btn-secondary" @onclick="ToggleHtmlVisibility">Cargar Artículos</button>
+
+@if (showHtml)
+{
+    <InputSelect id="articulo" @bind-Value="nuevoArticulo.id_categoria">
+        <option value="">Selecciona un articulo</option>
+        @foreach (var articulo in articulos)
+        {
+            <option value="@articulo.id">@articulo.descripcion</option>
+        }
+    </InputSelect>
+}
+
 @code {
     private Modelo_Pedido pedido = new Modelo_Pedido();
+    private IEnumerable<Modelo_Articulos> articulos;
+    private Modelo_Articulos nuevoArticulo = new Modelo_Articulos();
+    private bool showHtml = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await repositorioArticulos.ObtenerTodo();
+        if (result != null)
+        {
+            articulos = result;
+        }
+    }
 
     private async Task HandleValidSubmit()
     {
-    //      await repositorio.Agregar(pedido);
-    //      pedido = new Modelo_Pedido();
+        await repositorioPedido.Agregar(pedido);
+        pedido = new Modelo_Pedido();
+    }
+
+    private void ToggleHtmlVisibility()
+    {
+        showHtml = !showHtml;
     }
 }
