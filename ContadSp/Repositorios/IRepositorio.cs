@@ -7,6 +7,7 @@
         Task<T> Agregar(T entidad);
         Task<T> Actualizar(T entidad);
         Task Eliminar(int id);
+        Task<IEnumerable<T>> Buscar(string buscar);
     }
 
 }

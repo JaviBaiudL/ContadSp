@@ -66,3 +66,16 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+/* AGREGADO FER 05/03 */
+.busqueda
+{
+    display: flex;
+    float: right;
+}
+
+.boton-busqueda
+{
+    padding-left: 5px;
+}
+/* AGREGADO FER 05/03 */

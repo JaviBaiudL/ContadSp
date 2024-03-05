@@ -4,6 +4,9 @@
 
 @inject IRepositorio<Modelo_Pedido> repositorioPedido
 @inject IRepositorio<Modelo_Articulos> repositorioArticulos
+@inject IRepositorio<Modelo_ABM_Categoria> Categorias
+@inject IRepositorio<Modelo_Unidad_Medida> repositorioUnidadMedida
+
 
 <h3>Realizar Pedido</h3>
 
@@ -27,35 +30,131 @@
         <label for="usuario">Usuario:</label>
         <InputText id="usuario" class="form-control" @bind-Value="pedido.usuario_solicita" />
     </div>
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    <br />
+    @if (listaArticulos == null)
+    {
+        <p><em>No se agregó ningun artículo al pedido</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Artículo</th>
+                    <th>ID Art.</th>
+                    <th>Cantidad</th>
+                    <th>Cantidad letra</th>
+                    <th>Unidad de medida</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in listaArticulos)
+                {
+                    <tr>
+                        <td style="width: 30%">@item.descripcion</td>
+
+                        <td style="width: 10%">@item.id</td>
+                        <td><input type="number"/></td>
+                        <td><input type="text"/></td>
+                        <td style="width: 20%">
+                            <select class="form-select" id="unidadMedida" value="unidadMedida">
+                                <option value="">Selecciona una unidad de medida</option>
+                                @foreach (var um in unidadMedida)
+                                {
+                                    <option value="@um.id">@um.unidad</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    <br />
+    <button type="submit" class="btn btn-primary" style="float: right;">Guardar Pedido</button>
+    <br />
 </EditForm>
+    
+    
+    <br />
+<br />
+    <div class="busqueda">
+        <div class="input-busqueda">
+            <input id="buscar" class="form-control" placeholder="Buscar artículos" />
+        </div>
+        <div class="boton-busqueda">
+            <button type="button" class="btn btn-primary" @onclick="() => VerArticulos()">Ver Todos</button>
+        </div>
+    </div>
+    <br />
+    <br />
 
-<button class="btn btn-secondary" @onclick="ToggleHtmlVisibility">Cargar Artículos</button>
+    @if (articulos == null)
+    {
+        <p><em>No se realizó ninguna búsqueda</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Artículo</th>
+                    <th>Monto Aprox.</th>
+                    <th>Última Fecha de Monto</th>
+                    <th>Categoría</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var articulo in articulos.ToList())
+                {
+                    <tr>
+                        <td>@articulo.descripcion</td>
+                        <td>@articulo.monto_aprox</td>
+                        <td>@articulo.fecha_ultimo_monto</td>
+                        <td>@(articulo.Categoria != null ? articulo.Categoria.categoria : "Sin categoría")</td>
+                        <td>
+                        <button class="btn btn-success" @onclick="() => AgregarArticulos(articulo)">Agregar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 
-@if (showHtml)
-{
-    <InputSelect id="articulo" @bind-Value="nuevoArticulo.id_categoria">
-        <option value="">Selecciona un articulo</option>
-        @foreach (var articulo in articulos)
-        {
-            <option value="@articulo.id">@articulo.descripcion</option>
-        }
-    </InputSelect>
-}
+    
+
 
 @code {
+
+
+
     private Modelo_Pedido pedido = new Modelo_Pedido();
     private IEnumerable<Modelo_Articulos> articulos;
     private Modelo_Articulos nuevoArticulo = new Modelo_Articulos();
-    private bool showHtml = false;
+    private IEnumerable<Modelo_Unidad_Medida> unidadMedida;
+    private Modelo_Detalle_Pedido detallePedido = new Modelo_Detalle_Pedido();
+    private List<Modelo_Articulos> listaArticulos = new List<Modelo_Articulos>();
+
+    private string busqueda = "";
 
     protected override async Task OnInitializedAsync()
     {
-        var result = await repositorioArticulos.ObtenerTodo();
+        var result = await repositorioUnidadMedida.ObtenerTodo();
         if (result != null)
         {
-            articulos = result;
+            unidadMedida = result;
         }
+    }
+
+    private async Task VerArticulos()
+    {
+        articulos = await repositorioArticulos.ObtenerTodo();
+
+    }
+
+    void AgregarArticulos(Modelo_Articulos articulo)
+    {
+        listaArticulos.Add(articulo);
     }
 
     private async Task HandleValidSubmit()
@@ -64,8 +163,4 @@
         pedido = new Modelo_Pedido();
     }
 
-    private void ToggleHtmlVisibility()
-    {
-        showHtml = !showHtml;
-    }
 }

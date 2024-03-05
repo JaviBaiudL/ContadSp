@@ -60,6 +60,12 @@ public class Repositorio<T> : IRepositorio<T> where T : class
             await _context.SaveChangesAsync();
         }
     }
+
+    public virtual async Task<IEnumerable<T>> Buscar(string buscar)
+    {
+        throw new NotImplementedException();
+    }
+
 }
 
 public class RepositorioModelo_ABM_Categoria : Repositorio<Modelo_ABM_Categoria>
@@ -81,6 +87,12 @@ public class RepositorioModelo_Articulos : Repositorio<Modelo_Articulos>
     {
         return await _context.Modelo_Articulos.Include(a => a.Categoria).ToListAsync();
     }
+
+    public override async Task<IEnumerable<Modelo_Articulos>> Buscar(string buscar)
+    {
+        return await _context.Modelo_Articulos.Include(a => a.descripcion).ToListAsync();
+    }
+
 }
 
 public class RepositorioModelo_Detalle_Pedido : Repositorio<Modelo_Detalle_Pedido>
