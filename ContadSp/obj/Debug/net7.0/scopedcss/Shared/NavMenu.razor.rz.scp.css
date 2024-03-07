@@ -4,7 +4,7 @@
 
 .top-row[b-p5i9qd5v1l] {
     height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    background-color: #333; /* Cambiado el color de fondo */
 }
 
 .navbar-brand[b-p5i9qd5v1l] {
@@ -23,9 +23,13 @@
     text-align: center;
 }
 
+    .titulo:hover[b-p5i9qd5v1l] {
+        color: #0071c1; /* Nuevo efecto hover para los t�tulos */
+    }
+
 .nav-item[b-p5i9qd5v1l] {
     font-size: 0.9rem;
-    padding-bottom: 0.5rem;
+    padding-bottom: 1rem; /* Aumentado el espacio entre elementos */
 }
 
     .nav-item:first-of-type[b-p5i9qd5v1l] {
@@ -37,13 +41,15 @@
     }
 
     .nav-item[b-p5i9qd5v1l]  a {
-        color: #d7d7d7;
+        color: #000; /* Cambiado el color de las letras a negro */
         border-radius: 4px;
         height: 3rem;
         display: flex;
         align-items: center;
         line-height: 3rem;
+        transition: background-color 0.3s ease, color 0.3s ease; /* Nueva transici�n */
     }
+
 
         .nav-item[b-p5i9qd5v1l]  a.active {
             background-color: rgba(255,255,255,0.25);
@@ -69,7 +75,9 @@
         /* Allow sidebar to scroll for tall menus */
         height: calc(100vh - 3.5rem);
         overflow-y: auto;
+        background: linear-gradient(to right, #0071c1, rgb(135, 176, 240)); /* De blanco a celeste */
     }
+
 
     .rz-panelmenuitem[b-p5i9qd5v1l] {
         background-color: rgba(0,0,0,0.4);

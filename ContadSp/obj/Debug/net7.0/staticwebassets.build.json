@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "I6YRTQU26Zm3RImmYTReuz5F3tzMftBPdnWWgo10MqU=",
+  "Hash": "J1107YquLW9uWQ1MKoiN5mVliwCDxfL0WSlfN6UVMn0=",
   "Source": "ContadSp",
   "BasePath": "_content/ContadSp",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\ContadSp.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\assets\\imagenes\\logopodjud.png",
+      "SourceId": "ContadSp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\",
+      "BasePath": "_content/ContadSp",
+      "RelativePath": "assets/imagenes/logopodjud.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\imagenes\\logopodjud.png"
     },
     {
       "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\css\\bootstrap\\bootstrap.min.css",

@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\ContadSp.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\assets\\imagenes\\logopodjud.png",
+      "PackagePath": "staticwebassets\\assets\\imagenes\\logopodjud.png"
+    },
+    {
       "Id": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
     },

@@ -4,7 +4,9 @@ using ContadSp.Repositorios;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders; // administracion de archivos
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using System.IO; // entrada y salida
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +38,14 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
+
+// lectura del directorio de fotos
+app.UseStaticFiles(new StaticFileOptions
+{
+    //FileProvider = new PhysicalFileProvider(
+    //    Path.Combine("d:\\fotos1")),
+    //RequestPath = "/fotos1"
+});
 
 app.UseRouting();
 

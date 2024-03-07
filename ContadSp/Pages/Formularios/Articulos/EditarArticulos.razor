@@ -1,40 +1,65 @@
 ﻿@page "/editar-articulo/{id}"
 @using ContadSp.Modelos
 @using ContadSp.Repositorios
+@using Microsoft.AspNetCore.Components.Forms
 @inject IRepositorio<Modelo_Articulos> RepositorioArticulos
 @inject NavigationManager NavigationManager
 
-<h3>Editar Artículo</h3>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3>Editar Artículo</h3>
+                </div>
+                <div class="card-body">
+                    <EditForm Model="articulo" OnValidSubmit="HandleValidSubmit">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
 
-<EditForm Model="articulo" OnValidSubmit="HandleValidSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+                        <div class="form-group">
+                            <label for="descripcion">Descripción:</label>
+                            <InputTextArea id="descripcion" class="form-control" @bind-Value="articulo.descripcion" />
+                        </div>
 
-    <div>
-        <label for="descripcion">Descripción:</label>
-        <InputTextArea id="descripcion" @bind-Value="articulo.descripcion" />
+                        <div class="form-group">
+                            <label for="monto_aprox">Monto Aproximado:</label>
+                            <InputNumber id="monto_aprox" class="form-control" @bind-Value="articulo.monto_aprox" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fecha_ultimo_monto">Fecha Último Monto:</label>
+                            <InputDate id="fecha_ultimo_monto" class="form-control" @bind-Value="articulo.fecha_ultimo_monto" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="foto">Foto:</label>
+                            <InputFile id="foto" class="form-control-file" OnChange="OnInputFileChange" />
+                            @if (!string.IsNullOrEmpty(articulo.foto))
+                            {
+                                var fileName = Path.GetFileName(articulo.foto);
+                                <img src="@($"/fotos1/{fileName}")" alt="Foto del artículo" width="100" />
+                            }
+                            else
+                            {
+                                <p>No hay foto disponible</p>
+                            }
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div>
-        <label for="monto_aprox">Monto Aproximado:</label>
-        <InputNumber id="monto_aprox" @bind-Value="articulo.monto_aprox" />
-    </div>
-
-    <div>
-        <label for="fecha_ultimo_monto">Fecha Último Monto:</label>
-        <InputDate id="fecha_ultimo_monto" @bind-Value="articulo.fecha_ultimo_monto" />
-    </div>
-
-
-
-    <button type="submit">Guardar cambios</button>
-</EditForm>
+</div>
 
 @code {
     [Parameter]
     public string id { get; set; }
 
     private Modelo_Articulos articulo;
+    private IBrowserFile selectedFile;
 
     protected override async Task OnInitializedAsync()
     {
@@ -42,8 +67,44 @@
         articulo = await RepositorioArticulos.Obtener(articuloId);
     }
 
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file == null || file.Size == 0)
+        {
+            return;
+        }
+
+        // Guardar el archivo seleccionado en la variable
+        selectedFile = file;
+    }
+
     private async Task HandleValidSubmit()
     {
+        if (selectedFile != null)
+        {
+            var path = Path.Combine("D:\\fotos1", selectedFile.Name);
+
+            // Verificar y crear el directorio si no existe
+            var directory = Path.GetDirectoryName(path);
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            // Guardar el archivo
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await selectedFile.OpenReadStream().CopyToAsync(stream);
+            }
+
+            if (File.Exists(path))
+            {
+                // Aquí es donde se guarda la ruta en la base de datos
+                articulo.foto = path;
+            }
+        }
+
         await RepositorioArticulos.Actualizar(articulo);
         NavigationManager.NavigateTo("/lista-articulos");
     }

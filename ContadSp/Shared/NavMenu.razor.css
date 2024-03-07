@@ -4,7 +4,7 @@
 
 .top-row {
     height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+    background-color: #333; /* Cambiado el color de fondo */
 }
 
 .navbar-brand {
@@ -23,9 +23,13 @@
     text-align: center;
 }
 
+    .titulo:hover {
+        color: #0071c1; /* Nuevo efecto hover para los títulos */
+    }
+
 .nav-item {
     font-size: 0.9rem;
-    padding-bottom: 0.5rem;
+    padding-bottom: 1rem; /* Aumentado el espacio entre elementos */
 }
 
     .nav-item:first-of-type {
@@ -37,13 +41,15 @@
     }
 
     .nav-item ::deep a {
-        color: #d7d7d7;
+        color: #000; /* Cambiado el color de las letras a negro */
         border-radius: 4px;
         height: 3rem;
         display: flex;
         align-items: center;
         line-height: 3rem;
+        transition: background-color 0.3s ease, color 0.3s ease; /* Nueva transición */
     }
+
 
         .nav-item ::deep a.active {
             background-color: rgba(255,255,255,0.25);
@@ -69,7 +75,9 @@
         /* Allow sidebar to scroll for tall menus */
         height: calc(100vh - 3.5rem);
         overflow-y: auto;
+        background: linear-gradient(to right, #0071c1, rgb(135, 176, 240)); /* De blanco a celeste */
     }
+
 
     .rz-panelmenuitem {
         background-color: rgba(0,0,0,0.4);

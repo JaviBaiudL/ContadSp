@@ -3,31 +3,107 @@
 @using ContadSp.Repositorios  <!-- Importa los repositorios -->
 @inject IRepositorio<Modelo_ABM_Categoria> repositorio
 
-<h3>AltaCategoria</h3>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h3 class="text-center">Alta de Categorias</h3>
 
-<!-- Crea un formulario de edición con el modelo de categoría y un manejador para cuando el formulario es válido -->
-<EditForm Model="@categoria" OnValidSubmit="HandleValidSubmit">
-    <DataAnnotationsValidator />  <!-- Validador para las anotaciones de datos del modelo -->
-    <ValidationSummary />  <!-- Resumen de validación para mostrar errores -->
+            <!-- Crea un formulario de edición con el modelo de categoría y un manejador para cuando el formulario es válido -->
+            <EditForm Model="@categoria" OnValidSubmit="HandleValidSubmit">
+                <DataAnnotationsValidator />  <!-- Validador para las anotaciones de datos del modelo -->
+                <ValidationSummary />  <!-- Resumen de validación para mostrar errores -->
+                <!-- Grupo de formulario para la entrada de la categoría -->
+                <div class="form-group">
+                    <label for="categoria">Categoria:</label>
+                    <!-- Campo de entrada de texto para la categoría, vinculado al modelo de categoría -->
+                    <InputText id="categoria" class="form-control form-control-sm" @bind-Value="categoria.categoria" />
+                </div>
 
-    <!-- Grupo de formulario para la entrada de la categoría -->
-    <div class="form-group">
-        <label for="categoria">Categoria:</label>
-        <!-- Campo de entrada de texto para la categoría, vinculado al modelo de categoría -->
-        <InputText id="categoria" class="form-control" @bind-Value="categoria.categoria" />
+                <!-- Botón para enviar el formulario -->
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </EditForm>
+        </div>
     </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <h3 class="text-center">Lista de Categorias</h3>
 
-    <!-- Botón para enviar el formulario -->
-    <button type="submit" class="btn btn-primary">Guardar</button>
-</EditForm>
+
+            @if (categorias == null)
+            {
+                <p><em>Cargando...</em></p>
+            }
+            else
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var cat in PaginatedList)
+                        {
+                            <tr>
+                                <td>@cat.categoria</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <button class="btn btn-primary" @onclick="PreviousPage" disabled="@IsPreviousDisabled">Anterior</button>
+                <button class="btn btn-primary" @onclick="NextPage" disabled="@IsNextDisabled">Siguiente</button>
+            }
+
+
+
+
+        </div>
+    </div>
+</div>
 
 @code {
-    private Modelo_ABM_Categoria categoria = new Modelo_ABM_Categoria();  <!-- Crea una nueva instancia del modelo de categoría -->
+    private int currentPage = 1;
+    private int itemsPerPage = 5;
+    private bool IsPreviousDisabled => currentPage == 1;
+    private bool IsNextDisabled => currentPage >= (categorias.Count / itemsPerPage) + (categorias.Count % itemsPerPage == 0 ? 0 : 1);
+    private List<Modelo_ABM_Categoria> PaginatedList => categorias.Skip((currentPage - 1) * itemsPerPage).Take(itemsPerPage).ToList();
+
+    private void NextPage()
+    {
+        if (!IsNextDisabled)
+        {
+            currentPage++;
+        }
+    }
+
+    private void PreviousPage()
+    {
+        if (!IsPreviousDisabled)
+        {
+            currentPage--;
+        }
+    }
+    private Modelo_ABM_Categoria categoria = new Modelo_ABM_Categoria();
+    <!-- Crea una nueva instancia del modelo de categoría -->
+    private List<Modelo_ABM_Categoria> categorias;
+
+    protected override async Task OnInitializedAsync()
+    {
+        categorias = (await repositorio.ObtenerTodo()).OrderBy(c => c.categoria).ToList(); // Ordena las categorías alfabéticamente
+    }
 
     <!-- Manejador para cuando el formulario es válido -->
     private async Task HandleValidSubmit()
     {
-        await repositorio.Agregar(categoria);  <!-- Agrega la nueva categoría al repositorio -->
+        await repositorio.Agregar(categoria);
+        <!-- Agrega la nueva categoría al repositorio -->
         categoria = new Modelo_ABM_Categoria(); // resetea el formulario para una nueva entrada
+        categorias = (await repositorio.ObtenerTodo()).ToList(); // Actualiza la lista de categorías
+    }
+
+    private async Task Eliminar(Modelo_ABM_Categoria cat)
+    {
+        await repositorio.Eliminar(cat.id); // Pasar el Id en lugar del objeto completo
+        categorias = (await repositorio.ObtenerTodo()).ToList(); // Actualiza la lista de categorías
     }
 }

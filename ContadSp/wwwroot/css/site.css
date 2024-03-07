@@ -19,7 +19,7 @@ a, .btn-link {
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 .content {
@@ -67,6 +67,25 @@ a, .btn-link {
         content: "An error has occurred."
     }
 
+.btn-edit {
+    background-color: #007BFF; /* Celeste oscuro */
+    border-color: #007BFF;
+    color: #FFFFFF; /*letra del boton de color blanca*/
+}
+
+.table-light-blue {
+    background-color: lightblue; /* Celeste muy claro */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #FFFFFF; /* Celeste claro */
+}
+
+.table-dark-header thead {
+    background-color: #343A40; /* Gris oscuro */
+    color: #FFFFFF; /* Blanco */
+}
+
 /* AGREGADO FER 05/03 */
 .busqueda
 {
@@ -74,8 +93,16 @@ a, .btn-link {
     float: right;
 }
 
-.boton-busqueda
+.boton-busqueda, .boton-ver
 {
     padding-left: 5px;
 }
 /* AGREGADO FER 05/03 */
+
+.formPedido {
+    border: 1px solid;
+    border-radius: 20px;
+    background-color: lightblue;
+    margin: 5%;
+    padding: 3%;
+}

@@ -61,9 +61,16 @@ public class Repositorio<T> : IRepositorio<T> where T : class
         }
     }
 
-    public virtual async Task<IEnumerable<T>> Buscar(string buscar)
+    public async Task<List<Modelo_Articulos>> Buscar(string buscar)
     {
-        throw new NotImplementedException();
+        var resultados = await _context.Modelo_Articulos.Where(a => a.descripcion.Contains(buscar)).ToListAsync();
+        return resultados;
+    }
+
+    public async Task<int> ObtenerUltimo()
+    {
+        var ultimo = await _context.Modelo_Pedidos.OrderByDescending(a => a.id).Select(a => a.id).FirstOrDefaultAsync();
+        return ultimo;
     }
 
 }
@@ -88,10 +95,12 @@ public class RepositorioModelo_Articulos : Repositorio<Modelo_Articulos>
         return await _context.Modelo_Articulos.Include(a => a.Categoria).ToListAsync();
     }
 
-    public override async Task<IEnumerable<Modelo_Articulos>> Buscar(string buscar)
-    {
-        return await _context.Modelo_Articulos.Include(a => a.descripcion).ToListAsync();
-    }
+    //public override async Task<IEnumerable<Modelo_Articulos>> Buscar(string buscar)
+    //{
+
+    //    var resultados = await _context.Modelo_Articulos.Where(a => a.descripcion.Contains(buscar)).ToListAsync();
+    //    return resultados;
+    //}
 
 }
 

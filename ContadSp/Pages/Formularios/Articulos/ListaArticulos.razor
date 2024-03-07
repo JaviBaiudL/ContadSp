@@ -5,58 +5,76 @@
 @inject IRepositorio<Modelo_ABM_Categoria> Categorias
 @inject IRepositorio<Modelo_Articulos> RepositorioArticulos
 
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="text-center">Lista de Artículos</h3>
+                </div>
+                <div class="card-body">
+                    @if (articulos == null)
+                    {
+                        <p><em>Cargando...</em></p>
+                    }
+                    else
+                    {
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
 
 
+                                <tr>
+                                    <th>Descripción</th>
+                                    <th>Monto Aproximado</th>
+                                    <th>Fecha Último Monto</th>
+                                    <th>Categoría</th>
+                                    <th>Foto</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var articulo in articulos)
+                                {
+                                    <tr>
+                                        <td>@articulo.descripcion</td>
+                                        <td>@articulo.monto_aprox</td>
+                                        <td>@articulo.fecha_ultimo_monto</td>
+                                        <td>@(articulo.Categoria != null ? articulo.Categoria.categoria : "Sin categoría")</td>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(articulo.foto))
+                                            {
+                                                var fileName = Path.GetFileName(articulo.foto);
+                                                <img src="@($"/fotos1/{fileName}")" alt="Foto del artículo" width="100" />
 
-<h3>Lista de Artículos</h3>
-
-@if (articulos == null)
-{
-    <p>Cargando...</p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Descripción</th>
-                <th>Monto Aproximado</th>
-                <th>Fecha Último Monto</th>
-                <th>Categoría</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var articulo in articulos)
-            {
-                <tr>
-                    <td>@articulo.descripcion</td>
-                    <td>@articulo.monto_aprox</td>
-                    <td>@articulo.fecha_ultimo_monto</td>
-                    <td>@(articulo.Categoria != null ? articulo.Categoria.categoria : "Sin categoría")</td>
-
-                    <td>
-                        @*<button class="btn btn-primary" @onclick="() => EditarArticulo(articulo.id)">Editar</button>*@
-                        <a href="editar-articulo/@articulo.id" class="btn btn-success btn-sm"><span class="oi oi-plus" aria-hidden="true"></span> Editar</a>
-                        <button class="btn btn-danger" @onclick="() => EliminarArticulo(articulo.id)">Eliminar</button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-
+                                            }
+                                            else
+                                            {
+                                                <p>No hay foto disponible</p>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a href="editar-articulo/@articulo.id" class="btn btn-success btn-sm"><span class="oi oi-plus" aria-hidden="true"></span> Editar</a>
+                                            <button class="btn btn-danger" @onclick="() => EliminarArticulo(articulo.id)">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @code {
+
     private IEnumerable<Modelo_Articulos> articulos;
-
-
 
     protected override async Task OnInitializedAsync()
     {
         articulos = await RepositorioArticulos.ObtenerTodo();
     }
-
 
     private void EditarArticulo(int id)
     {

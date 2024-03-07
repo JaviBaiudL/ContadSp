@@ -6,41 +6,65 @@
 @inject IRepositorio<Modelo_ABM_Categoria> RepositorioCategorias
 @inject IRepositorio<Modelo_Articulos> RepositorioArticulos
 
-<h3>Crear Artículo</h3>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h3 class="text-center">Crear Artículo</h3>
 
-<EditForm Model="nuevoArticulo" OnValidSubmit="HandleValidSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+            <EditForm Model="nuevoArticulo" OnValidSubmit="HandleValidSubmit">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
 
-    @if (categorias == null)
-    {
-        <p>Cargando...</p>
-    }
-    else
-    {
-        <InputSelect id="categoria" @bind-Value="nuevoArticulo.id_categoria">
-            <option value="">Selecciona una categoría</option>
-            @foreach (var categoria in categorias)
+                @if (categorias == null)
+                {
+                    <p>Cargando...</p>
+                }
+                else
+                {
+                    <div class="form-group">
+                        <label for="categoria">Categoría:</label>
+                        <InputSelect id="categoria" class="form-control" @bind-Value="nuevoArticulo.id_categoria">
+                            <option value="">Selecciona una categoría</option>
+                            @foreach (var categoria in categorias)
+                            {
+                                <option value="@categoria.id">@categoria.categoria</option>
+                            }
+                        </InputSelect>
+                    </div>
+                }
+
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <InputText id="descripcion" class="form-control" @bind-Value="nuevoArticulo.descripcion" />
+                </div>
+
+                <div class="form-group">
+                    <label for="monto_aprox">Monto Aproximado:</label>
+                    <InputNumber id="monto_aprox" class="form-control" @bind-Value="nuevoArticulo.monto_aprox" />
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha_ultimo_monto">Fecha Último Monto:</label>
+                    <InputDate id="fecha_ultimo_monto" class="form-control" @bind-Value="nuevoArticulo.fecha_ultimo_monto" />
+                </div>
+
+                <div class="form-group">
+                    <label for="foto">Foto:</label>
+                    <InputFile id="foto" class="form-control-file" OnChange="OnInputFileChange" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Crear</button>
+            </EditForm>
+
+            @if (!string.IsNullOrEmpty(mensajeError))
             {
-                <option value="@categoria.id">@categoria.categoria</option>
+                <div class="alert alert-danger" role="alert">
+                    @mensajeError
+                </div>
             }
-        </InputSelect>
-    }
-
-    <InputText id="descripcion" @bind-Value="nuevoArticulo.descripcion" />
-    <InputNumber id="monto_aprox" @bind-Value="nuevoArticulo.monto_aprox" />
-    <InputDate id="fecha_ultimo_monto" @bind-Value="nuevoArticulo.fecha_ultimo_monto" />
-    <InputFile id="foto" OnChange="OnInputFileChange" />
-
-    <button type="submit">Crear</button>
-</EditForm>
-
-@if (!string.IsNullOrEmpty(mensajeError))
-{
-    <div class="alert alert-danger" role="alert">
-        @mensajeError
+        </div>
     </div>
-}
+</div>
 
 @code {
     private Modelo_Articulos nuevoArticulo = new Modelo_Articulos();
