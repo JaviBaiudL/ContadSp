@@ -3,6 +3,7 @@ using System;
 using ContadSp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContadSp.Migrations
 {
     [DbContext(typeof(ContadSpContext))]
-    partial class ContadSpContextModelSnapshot : ModelSnapshot
+    [Migration("20240314145023_Nuevo intento con BD completa")]
+    partial class NuevointentoconBDcompleta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

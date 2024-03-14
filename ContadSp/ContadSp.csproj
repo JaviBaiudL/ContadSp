@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Imagenes\**" />
+    <Content Remove="Imagenes\**" />
+    <EmbeddedResource Remove="Imagenes\**" />
+    <None Remove="Imagenes\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="7.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.15" />
@@ -19,7 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="Imagenes\" />
+    <Folder Include="Pages\Formularios\" />
   </ItemGroup>
 
 </Project>

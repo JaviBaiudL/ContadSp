@@ -18,6 +18,7 @@ builder.Services.AddScoped<IRepositorio<Modelo_Articulos>, Repositorio<Modelo_Ar
 builder.Services.AddScoped<IRepositorio<Modelo_Pedido>, Repositorio<Modelo_Pedido>>();
 builder.Services.AddScoped<IRepositorio<Modelo_Detalle_Pedido>, Repositorio<Modelo_Detalle_Pedido>>();
 builder.Services.AddScoped<IRepositorio<Modelo_Unidad_Medida>, Repositorio<Modelo_Unidad_Medida>>();
+builder.Services.AddScoped<IRepositorio<Modelo_Destino>, Repositorio<Modelo_Destino>>();
 builder.Services.AddScoped<ContadSpContext>();
 
 builder.Services.AddHttpClient(); // Agrega esta línea

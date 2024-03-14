@@ -3,6 +3,7 @@ using System;
 using ContadSp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContadSp.Migrations
 {
     [DbContext(typeof(ContadSpContext))]
-    partial class ContadSpContextModelSnapshot : ModelSnapshot
+    [Migration("20240312143606_Nueva migracion de base de datos completa")]
+    partial class Nuevamigraciondebasededatoscompleta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,10 +42,11 @@ namespace ContadSp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("cantidadLetra")
+                    b.Property<string>("CantidadLetra")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("cantidadNum")
+                    b.Property<int>("CantidadNum")
                         .HasColumnType("int");
 
                     b.Property<string>("descripcion")

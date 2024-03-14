@@ -3,6 +3,7 @@ using System;
 using ContadSp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContadSp.Migrations
 {
     [DbContext(typeof(ContadSpContext))]
-    partial class ContadSpContextModelSnapshot : ModelSnapshot
+    [Migration("20240311201423_cambiomodarticulos")]
+    partial class cambiomodarticulos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,10 +42,11 @@ namespace ContadSp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("cantidadLetra")
+                    b.Property<string>("CantidadLetra")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("cantidadNum")
+                    b.Property<int>("CantidadNum")
                         .HasColumnType("int");
 
                     b.Property<string>("descripcion")
@@ -61,28 +65,11 @@ namespace ContadSp.Migrations
                     b.Property<double>("monto_aprox")
                         .HasColumnType("double");
 
-                    b.Property<int>("unidadMedida")
-                        .HasColumnType("int");
-
                     b.HasKey("id");
 
                     b.HasIndex("id_categoria");
 
                     b.ToTable("Modelo_Articulos");
-                });
-
-            modelBuilder.Entity("ContadSp.Modelos.Modelo_Destino", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("destino")
-                        .HasColumnType("longtext");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Modelo_Destino");
                 });
 
             modelBuilder.Entity("ContadSp.Modelos.Modelo_Detalle_Pedido", b =>
@@ -126,18 +113,16 @@ namespace ContadSp.Migrations
                     b.Property<string>("descripcion")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("destino")
+                        .HasColumnType("longtext");
+
                     b.Property<DateOnly>("fecha_pedido")
                         .HasColumnType("date");
-
-                    b.Property<int>("id_destino")
-                        .HasColumnType("int");
 
                     b.Property<string>("usuario_solicita")
                         .HasColumnType("longtext");
 
                     b.HasKey("id");
-
-                    b.HasIndex("id_destino");
 
                     b.ToTable("Modelo_Pedidos");
                 });
@@ -194,17 +179,6 @@ namespace ContadSp.Migrations
                     b.Navigation("Unidad_Medida");
                 });
 
-            modelBuilder.Entity("ContadSp.Modelos.Modelo_Pedido", b =>
-                {
-                    b.HasOne("ContadSp.Modelos.Modelo_Destino", "Destino")
-                        .WithMany("Pedidos")
-                        .HasForeignKey("id_destino")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Destino");
-                });
-
             modelBuilder.Entity("ContadSp.Modelos.Modelo_ABM_Categoria", b =>
                 {
                     b.Navigation("Articulos");
@@ -213,11 +187,6 @@ namespace ContadSp.Migrations
             modelBuilder.Entity("ContadSp.Modelos.Modelo_Articulos", b =>
                 {
                     b.Navigation("Detalle_Pedido");
-                });
-
-            modelBuilder.Entity("ContadSp.Modelos.Modelo_Destino", b =>
-                {
-                    b.Navigation("Pedidos");
                 });
 
             modelBuilder.Entity("ContadSp.Modelos.Modelo_Pedido", b =>

@@ -95,13 +95,6 @@ public class RepositorioModelo_Articulos : Repositorio<Modelo_Articulos>
         return await _context.Modelo_Articulos.Include(a => a.Categoria).ToListAsync();
     }
 
-    //public override async Task<IEnumerable<Modelo_Articulos>> Buscar(string buscar)
-    //{
-
-    //    var resultados = await _context.Modelo_Articulos.Where(a => a.descripcion.Contains(buscar)).ToListAsync();
-    //    return resultados;
-    //}
-
 }
 
 public class RepositorioModelo_Detalle_Pedido : Repositorio<Modelo_Detalle_Pedido>
@@ -123,6 +116,14 @@ public class RepositorioModelo_Pedido : Repositorio<Modelo_Pedido>
 public class RepositorioModelo_Unidad_Medida : Repositorio<Modelo_Unidad_Medida>
 {
     public RepositorioModelo_Unidad_Medida(ContadSpContext context) : base(context)
+    {
+
+    }
+}
+
+public class RepositorioModelo_Destino : Repositorio<Modelo_Destino>
+{
+    public RepositorioModelo_Destino(ContadSpContext context) : base(context)
     {
 
     }

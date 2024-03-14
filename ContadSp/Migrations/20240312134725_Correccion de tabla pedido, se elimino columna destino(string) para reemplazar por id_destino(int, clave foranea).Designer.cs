@@ -3,6 +3,7 @@ using System;
 using ContadSp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContadSp.Migrations
 {
     [DbContext(typeof(ContadSpContext))]
-    partial class ContadSpContextModelSnapshot : ModelSnapshot
+    [Migration("20240312134725_Correccion de tabla pedido, se elimino columna destino(string) para reemplazar por id_destino(int, clave foranea)")]
+    partial class Correcciondetablapedidoseeliminocolumnadestinostringparareemplazarporid_destinointclaveforanea
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,12 +42,6 @@ namespace ContadSp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("cantidadLetra")
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("cantidadNum")
-                        .HasColumnType("int");
-
                     b.Property<string>("descripcion")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -60,9 +57,6 @@ namespace ContadSp.Migrations
 
                     b.Property<double>("monto_aprox")
                         .HasColumnType("double");
-
-                    b.Property<int>("unidadMedida")
-                        .HasColumnType("int");
 
                     b.HasKey("id");
 

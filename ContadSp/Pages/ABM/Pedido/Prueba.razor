@@ -1,0 +1,28 @@
+﻿@page "/prueba"
+
+@using ContadSp.Modelos
+@using ContadSp.Repositorios
+
+@inject IRepositorio<Modelo_Destino> repositorioDestino
+
+
+<h3>Prueba</h3>
+
+<select>
+<option value="">Seleccione destino</option>
+    @foreach (var destino in destinos)
+    {
+        <option value="@destino.id">@destino.destino</option>
+    }
+</select>
+
+
+@code {
+    private IEnumerable<Modelo_Destino> destinos;
+
+protected override async Task OnInitializedAsync()
+    {
+        destinos = await repositorioDestino.ObtenerTodo();
+
+    }
+}

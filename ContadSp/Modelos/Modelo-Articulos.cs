@@ -18,11 +18,13 @@ namespace ContadSp.Modelos
         public string descripcion { get; set; }
         public double monto_aprox { get; set; }
         public DateOnly fecha_ultimo_monto { get; set; }
+        public int cantidadNum { get; set; } = 0;
+        public string? cantidadLetra { get; set; }
+        public int unidadMedida { get; set; } = 0;
         public string? foto { get; set; }
 
         [ForeignKey("id_categoria")]
-        public int id_categoria { get; set; }
-        //public List<Modelo_ABM_Categoria> Categorias { get; set; } 
+        public int id_categoria { get; set; } 
         public Modelo_ABM_Categoria Categoria { get; set; }
 
         public List<Modelo_Detalle_Pedido>? Detalle_Pedido { get; set; }

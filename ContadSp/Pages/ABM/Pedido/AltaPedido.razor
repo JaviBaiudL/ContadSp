@@ -7,6 +7,7 @@
 @inject IRepositorio<Modelo_ABM_Categoria> Categorias
 @inject IRepositorio<Modelo_Unidad_Medida> repositorioUnidadMedida
 @inject IRepositorio<Modelo_Detalle_Pedido> repositorioDetallePedido
+@inject IRepositorio<Modelo_Destino> repositorioDestino
 
 
 <h3>Realizar Pedido</h3>
@@ -15,21 +16,36 @@
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <div class="form-group">
-        <label for="fecha">Fecha:</label>
-        <InputDate id="fecha" class="form-control" @bind-Value="pedido.fecha_pedido" />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <InputDate id="fecha" class="form-control" @bind-Value="pedido.fecha_pedido" required />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="destino">Destino:</label>
+                @* <InputNumber id="destino" class="form-control" @bind-Value="pedido.id_destino" required /> *@
+               <select class="form-select" id="destino" @bind="pedido.id_destino" required>
+                    <option value="">Seleccione destino</option>
+                    @foreach (var destino in listaDestinos)
+                    {
+                        <option value="@destino.id">@destino.destino</option>
+                    }
+                </select>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="destino">Destino:</label>
-        <InputText id="destino" class="form-control" @bind-Value="pedido.destino" />
-    </div>
+
+    
     <div class="form-group">
         <label for="descripcion">Descripción:</label>
-        <InputText id="descripcion" class="form-control" @bind-Value="pedido.descripcion" />
+        <InputText id="descripcion" class="form-control" @bind-Value="pedido.descripcion" required/>
     </div>
     <div class="form-group">
         <label for="usuario">Usuario:</label>
-        <InputText id="usuario" class="form-control" @bind-Value="pedido.usuario_solicita" />
+        <InputText id="usuario" class="form-control" @bind-Value="pedido.usuario_solicita" required/>
     </div>
     <br />
     @if (listaArticulos == null)
@@ -55,10 +71,13 @@
                         <td style="width: 30%">@item.descripcion</td>
 
                         <td style="width: 10%">@item.id</td>
-                        <td><input type="number" @bind-value="cantidadNum" /></td>
-                        <td><input type="text" @bind-value="cantidadLetra" /></td>
+                        <td><input type="number" @bind-value="item.cantidadNum" @oninput="e => OnInput(item, e)" required/></td>
+
+
+                        <td><input type="text" @bind-value="item.cantidadLetra" disabled readonly/></td>
+
                         <td style="width: 20%">
-                            <select class="form-select" id="unidadMedida" value="unidadMedida">
+                            <select class="form-select" id="unidadMedida" @bind="item.unidadMedida" required>
                                 <option value="">Seleccione unidad de medida</option>
                                 @foreach (var um in unidadMedida)
                                 {
@@ -82,7 +101,7 @@
 <br />
 <div class="busqueda">
     <div class="input-busqueda">
-        <input type="text" class="form-control" placeholder="Buscar artículos" @bind="busqueda" />
+        <input type="text" class="form-control" placeholder="Buscar artículos" @bind-value="busqueda" />
     </div>
     <div class="boton-busqueda">
         <button type="button" class="btn btn-primary" @onclick="() => BuscarArticulos(busqueda)"><i class="oi oi-magnifying-glass"></i></button>
@@ -131,29 +150,39 @@ else
 
 @code {
 
-    private Modelo_Pedido pedido = new Modelo_Pedido();
+    
     private IEnumerable<Modelo_Articulos> articulos;
-    private Modelo_Articulos nuevoArticulo = new Modelo_Articulos();
     private IEnumerable<Modelo_Unidad_Medida> unidadMedida;
+    private IEnumerable<Modelo_Destino> destinos;
+
+    private Modelo_Articulos nuevoArticulo = new Modelo_Articulos();
+    private Modelo_Pedido pedido = new Modelo_Pedido();
     private Modelo_Detalle_Pedido detallePedido = new Modelo_Detalle_Pedido();
+
     private List<Modelo_Articulos> listaArticulos = new List<Modelo_Articulos>();
+    private List<Modelo_Destino> listaDestinos = new List<Modelo_Destino>();
+
     private string busqueda { get; set; }
-    private int cantidadNum;
-    private string cantidadLetra;
 
     protected override async Task OnInitializedAsync()
     {
-        var result = await repositorioUnidadMedida.ObtenerTodo();
-        if (result != null)
+
+        var um = await repositorioUnidadMedida.ObtenerTodo();
+        
+        if (um != null)
         {
-            unidadMedida = result;
+            unidadMedida = um;
         }
+         var destino = await repositorioDestino.ObtenerTodo();
+         if (destino != null)
+         {
+              listaDestinos = destino.ToList();
+         }
     }
 
     private async Task VerArticulos()
     {
         articulos = await repositorioArticulos.ObtenerTodo();
-
     }
 
     private async Task AgregarArticulos(Modelo_Articulos articulo)
@@ -172,18 +201,34 @@ else
         pedido = new Modelo_Pedido();
         var lastId = await repositorioPedido.ObtenerUltimo();
 
-        foreach(var articulo in articulos)
+        foreach (var articulo in articulos)
         {
             detallePedido = new Modelo_Detalle_Pedido();
-            detallePedido.cantidad = cantidadNum;
-            detallePedido.cantidad_letra = cantidadLetra; // tanto cantidad numero como cantidad letra estan bindeando el mismo valor para todos los artículos (resolver)
+            detallePedido.cantidad = articulo.cantidadNum;
+            detallePedido.cantidad_letra = articulo.cantidadLetra;
             detallePedido.id_articulo = articulo.id;
-            detallePedido.id_pedido = lastId; 
-            detallePedido.id_unidad = 1; // falta bindear con el valor del select
+            detallePedido.id_pedido = lastId;
+            detallePedido.id_unidad = articulo.unidadMedida;
             await repositorioDetallePedido.Agregar(detallePedido);
-
         }
-
+        listaArticulos.Clear();
+        detallePedido = new Modelo_Detalle_Pedido();
+        pedido = new Modelo_Pedido();
     }
+
+    private void OnInput(Modelo_Articulos articulo, ChangeEventArgs e)
+    {
+        UpdateCantidadLetra(articulo, e);
+    }
+
+
+    private void UpdateCantidadLetra(Modelo_Articulos articulo, ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value.ToString(), out var num))
+        {
+            articulo.cantidadLetra = Conversores.NumeroALetras(num);
+        }
+    }
+
 
 }

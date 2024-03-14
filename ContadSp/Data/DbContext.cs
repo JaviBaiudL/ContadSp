@@ -15,6 +15,7 @@ namespace ContadSp.Data
         public DbSet<Modelo_Pedido>? Modelo_Pedidos { get; set; }
         public DbSet<Modelo_Detalle_Pedido>? Modelo_Detalle_Pedido { get; set; }
         public DbSet<Modelo_Unidad_Medida>? Modelo_Unidad_Medida { get; set; }
+        public DbSet<Modelo_Destino>? Modelo_Destino { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,6 +40,11 @@ namespace ContadSp.Data
                 .HasOne(u => u.Unidad_Medida)
                 .WithMany(d => d.Detalle_Pedido)
                 .HasForeignKey(u => u.id_unidad);
+
+            modelBuilder.Entity<Modelo_Pedido>()
+                .HasOne(d => d.Destino)
+                .WithMany(p => p.Pedidos)
+                .HasForeignKey(d => d.id_destino);
         }
     }
 }

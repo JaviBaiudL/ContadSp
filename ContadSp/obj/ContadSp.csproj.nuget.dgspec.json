@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\ContadSp.csproj": {}
+    "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\ContadSp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\ContadSp.csproj": {
+    "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\ContadSp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\ContadSp.csproj",
+        "projectUniqueName": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\ContadSp.csproj",
         "projectName": "ContadSp",
-        "projectPath": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\ContadSp.csproj",
+        "projectPath": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\ContadSp.csproj",
         "packagesPath": "C:\\Users\\fer_a\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\obj\\",
+        "outputPath": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fer_a\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "g8Sil+W5n+QiKHdw3wnbloPJjAD9mzv79LRMySrdZj2g0wLThSGsyU6q8pDcqfQQ6BKuH2AXaFsNQg5dP+KAIQ==",
+  "dgSpecHash": "cwM4PGvN0nk9pyzmW2txULaL4Fw9p1rfUelsyCgjX7S0u+PIT/evegUgDRuKNqEMM01iKZwUOJAmfznS5jA8ZQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\ContadSp.csproj",
+  "projectFilePath": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\ContadSp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fer_a\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\fer_a\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.15\\microsoft.entityframeworkcore.7.0.15.nupkg.sha512",

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "J1107YquLW9uWQ1MKoiN5mVliwCDxfL0WSlfN6UVMn0=",
+  "Hash": "oZhA0qjd+QV0GryOccvrcMku+nqrEZq3uP/2wrjsZnM=",
   "Source": "ContadSp",
   "BasePath": "_content/ContadSp",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "ContadSp\\wwwroot",
       "Source": "ContadSp",
-      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\",
       "BasePath": "_content/ContadSp",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\obj\\Debug\\net7.0\\scopedcss\\bundle\\ContadSp.styles.css",
+      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\obj\\Debug\\net7.0\\scopedcss\\bundle\\ContadSp.styles.css",
       "SourceId": "ContadSp",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\obj\\Debug\\net7.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\obj\\Debug\\net7.0\\scopedcss\\bundle\\",
       "BasePath": "_content/ContadSp",
       "RelativePath": "ContadSp.styles.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\obj\\Debug\\net7.0\\scopedcss\\bundle\\ContadSp.styles.css"
+      "OriginalItemSpec": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\obj\\Debug\\net7.0\\scopedcss\\bundle\\ContadSp.styles.css"
     },
     {
-      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\ContadSp.bundle.scp.css",
+      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\ContadSp.bundle.scp.css",
       "SourceId": "ContadSp",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/ContadSp",
       "RelativePath": "ContadSp.bundle.scp.css",
       "AssetKind": "All",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\ContadSp.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\ContadSp.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\assets\\imagenes\\logopodjud.png",
+      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\assets\\imagenes\\logopodjud.png",
       "SourceId": "ContadSp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\",
       "BasePath": "_content/ContadSp",
       "RelativePath": "assets/imagenes/logopodjud.png",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\imagenes\\logopodjud.png"
     },
     {
-      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "SourceId": "ContadSp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\",
       "BasePath": "_content/ContadSp",
       "RelativePath": "css/bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "ContadSp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\",
       "BasePath": "_content/ContadSp",
       "RelativePath": "css/bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "SourceId": "ContadSp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\",
       "BasePath": "_content/ContadSp",
       "RelativePath": "css/open-iconic/font/css/open-iconic-bootstrap.min.css",
       "AssetKind": "All",
@@ -131,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
       "SourceId": "ContadSp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\",
       "BasePath": "_content/ContadSp",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.eot",
       "AssetKind": "All",
@@ -150,10 +150,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
     },
     {
-      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
       "SourceId": "ContadSp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\",
       "BasePath": "_content/ContadSp",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.otf",
       "AssetKind": "All",
@@ -169,10 +169,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
     },
     {
-      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
       "SourceId": "ContadSp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\",
       "BasePath": "_content/ContadSp",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.svg",
       "AssetKind": "All",
@@ -188,10 +188,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
     },
     {
-      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
       "SourceId": "ContadSp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\",
       "BasePath": "_content/ContadSp",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.ttf",
       "AssetKind": "All",
@@ -207,10 +207,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
     },
     {
-      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
       "SourceId": "ContadSp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\",
       "BasePath": "_content/ContadSp",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.woff",
       "AssetKind": "All",
@@ -226,10 +226,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
-      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "SourceId": "ContadSp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\",
       "BasePath": "_content/ContadSp",
       "RelativePath": "css/open-iconic/FONT-LICENSE",
       "AssetKind": "All",
@@ -245,10 +245,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
       "SourceId": "ContadSp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\",
       "BasePath": "_content/ContadSp",
       "RelativePath": "css/open-iconic/ICON-LICENSE",
       "AssetKind": "All",
@@ -264,10 +264,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\ICON-LICENSE"
     },
     {
-      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\css\\open-iconic\\README.md",
+      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\css\\open-iconic\\README.md",
       "SourceId": "ContadSp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\",
       "BasePath": "_content/ContadSp",
       "RelativePath": "css/open-iconic/README.md",
       "AssetKind": "All",
@@ -283,10 +283,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\README.md"
     },
     {
-      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\css\\site.css",
+      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\css\\site.css",
       "SourceId": "ContadSp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\",
       "BasePath": "_content/ContadSp",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -302,10 +302,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\favicon.png",
+      "Identity": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\favicon.png",
       "SourceId": "ContadSp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\wwwroot\\",
       "BasePath": "_content/ContadSp",
       "RelativePath": "favicon.png",
       "AssetKind": "All",
