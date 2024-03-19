@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "cwM4PGvN0nk9pyzmW2txULaL4Fw9p1rfUelsyCgjX7S0u+PIT/evegUgDRuKNqEMM01iKZwUOJAmfznS5jA8ZQ==",
+  "dgSpecHash": "2h7IQjvL3vtHiEeQYuIHd7ol94FJeTK1tSP174H4TZaAoiW6uvaAd1CefEFL4kMCjnVBjEZSLw0nMjzimwNpgQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\ContadSp.csproj",
   "expectedPackageFiles": [
@@ -26,11 +26,7 @@
     "C:\\Users\\fer_a\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\7.0.0\\pomelo.entityframeworkcore.mysql.7.0.0.nupkg.sha512",
     "C:\\Users\\fer_a\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\fer_a\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
-    "C:\\Users\\fer_a\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
-    "C:\\Users\\fer_a\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.14\\microsoft.windowsdesktop.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\fer_a\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.14\\microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\fer_a\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.14\\microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\fer_a\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.14\\microsoft.netcore.app.host.win-x64.7.0.14.nupkg.sha512"
+    "C:\\Users\\fer_a\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }

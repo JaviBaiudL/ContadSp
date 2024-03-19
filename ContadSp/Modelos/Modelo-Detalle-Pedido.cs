@@ -8,8 +8,11 @@ namespace ContadSp.Modelos
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
+        public double precio { get; set; }
+        public string? precio_letra { get; set; }
         public int cantidad { get; set; }
-        public string? cantidad_letra { get; set; }
+        public double subtotal { get; set; }
+        public string? subtotal_letra { get; set; }
 
         [ForeignKey("id_articulo")]
         public int id_articulo { get; set; }

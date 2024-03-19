@@ -16,7 +16,8 @@ namespace ContadSp.Modelos
         public DateOnly fecha_pedido { get; set; }
         public string? descripcion { get; set; }
         public string? usuario_solicita { get; set; }
-
+        public double total { get; set; }
+        public string? total_letra { get; set; }
         public List<Modelo_Detalle_Pedido>? Detalle_Pedido { get; set; }
 
         [ForeignKey("id_destino")]

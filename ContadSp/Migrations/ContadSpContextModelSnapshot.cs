@@ -39,12 +39,6 @@ namespace ContadSp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("cantidadLetra")
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("cantidadNum")
-                        .HasColumnType("int");
-
                     b.Property<string>("descripcion")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -60,9 +54,6 @@ namespace ContadSp.Migrations
 
                     b.Property<double>("monto_aprox")
                         .HasColumnType("double");
-
-                    b.Property<int>("unidadMedida")
-                        .HasColumnType("int");
 
                     b.HasKey("id");
 
@@ -94,9 +85,6 @@ namespace ContadSp.Migrations
                     b.Property<int>("cantidad")
                         .HasColumnType("int");
 
-                    b.Property<string>("cantidad_letra")
-                        .HasColumnType("longtext");
-
                     b.Property<int>("id_articulo")
                         .HasColumnType("int");
 
@@ -105,6 +93,18 @@ namespace ContadSp.Migrations
 
                     b.Property<int>("id_unidad")
                         .HasColumnType("int");
+
+                    b.Property<double>("precio")
+                        .HasColumnType("double");
+
+                    b.Property<string>("precio_letra")
+                        .HasColumnType("longtext");
+
+                    b.Property<double>("subtotal")
+                        .HasColumnType("double");
+
+                    b.Property<string>("subtotal_letra")
+                        .HasColumnType("longtext");
 
                     b.HasKey("id");
 
@@ -131,6 +131,12 @@ namespace ContadSp.Migrations
 
                     b.Property<int>("id_destino")
                         .HasColumnType("int");
+
+                    b.Property<double>("total")
+                        .HasColumnType("double");
+
+                    b.Property<string>("total_letra")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("usuario_solicita")
                         .HasColumnType("longtext");

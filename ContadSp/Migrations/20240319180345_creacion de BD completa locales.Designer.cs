@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContadSp.Migrations
 {
     [DbContext(typeof(ContadSpContext))]
-    [Migration("20240312134725_Correccion de tabla pedido, se elimino columna destino(string) para reemplazar por id_destino(int, clave foranea)")]
-    partial class Correcciondetablapedidoseeliminocolumnadestinostringparareemplazarporid_destinointclaveforanea
+    [Migration("20240319180345_creacion de BD completa locales")]
+    partial class creaciondeBDcompletalocales
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -88,9 +88,6 @@ namespace ContadSp.Migrations
                     b.Property<int>("cantidad")
                         .HasColumnType("int");
 
-                    b.Property<string>("cantidad_letra")
-                        .HasColumnType("longtext");
-
                     b.Property<int>("id_articulo")
                         .HasColumnType("int");
 
@@ -99,6 +96,18 @@ namespace ContadSp.Migrations
 
                     b.Property<int>("id_unidad")
                         .HasColumnType("int");
+
+                    b.Property<double>("precio")
+                        .HasColumnType("double");
+
+                    b.Property<string>("precio_letra")
+                        .HasColumnType("longtext");
+
+                    b.Property<double>("subtotal")
+                        .HasColumnType("double");
+
+                    b.Property<string>("subtotal_letra")
+                        .HasColumnType("longtext");
 
                     b.HasKey("id");
 
@@ -125,6 +134,12 @@ namespace ContadSp.Migrations
 
                     b.Property<int>("id_destino")
                         .HasColumnType("int");
+
+                    b.Property<double>("total")
+                        .HasColumnType("double");
+
+                    b.Property<string>("total_letra")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("usuario_solicita")
                         .HasColumnType("longtext");

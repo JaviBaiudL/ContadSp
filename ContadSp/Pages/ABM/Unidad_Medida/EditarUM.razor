@@ -5,26 +5,37 @@
 @inject IRepositorio<Modelo_Unidad_Medida> repositorio
 @inject NavigationManager NavigationManager
 
-<h3>Editar unidad de medida</h3>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3>Editar unidad de medida</h3>
+                </div>
+                <div class="card-body">
+                    @if (unidad_medida == null)
+                    {
+                        <p><em>Cargando...</em></p>
+                    }
+                    else
+                    {
+                        <EditForm Model="@unidad_medida" OnValidSubmit="HandleValidSubmit">
+                            <DataAnnotationsValidator />
+                            <ValidationSummary />
 
-@if (unidad_medida == null)
-{
-    <p><em>Cargando...</em></p>
-}
-else
-{
-    <EditForm Model="@unidad_medida" OnValidSubmit="HandleValidSubmit">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
+                            <div class="form-group">
+                                <label for="unidad_medida">Unidad de medida:</label>
+                                <InputText id="unidad_medida" class="form-control col-md-6" @bind-Value="unidad_medida.unidad" />
+                            </div>
 
-        <div class="form-group">
-            <label for="unidad_medida">Unidad de medida:</label>
-            <InputText id="unidad_medida" class="form-control" @bind-Value="unidad_medida.unidad" />
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </EditForm>
+                    }
+                </div>
+            </div>
         </div>
-
-        <button type="submit" class="btn btn-primary">Guardar</button>
-    </EditForm>
-}
+    </div>
+</div>
 
 @code {
     [Parameter]
@@ -43,3 +54,4 @@ else
         NavigationManager.NavigateTo("/listarUM");
     }
 }
+

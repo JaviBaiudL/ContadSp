@@ -87,7 +87,7 @@ a, .btn-link {
 }
 
 /* AGREGADO FER 05/03 */
-.busqueda
+.btn-opciones
 {
     display: flex;
     float: right;
@@ -105,4 +105,46 @@ a, .btn-link {
     background-color: lightblue;
     margin: 5%;
     padding: 3%;
+}
+
+/*-- ESTILOS PARA ANCHO DE ELEMENTOS --*/
+
+.ancho-5 {
+    width: 5%;
+}
+
+.ancho-10 {
+    width: 10%;
+}
+
+.ancho-15 {
+    width: 15%;
+}
+
+.ancho-20 {
+    width: 20%;
+}
+
+.ancho-25 {
+    width: 25%;
+}
+
+.ancho-30 {
+    width: 30%;
+}
+
+.ancho-40 {
+    width: 40%;
+}
+
+/*-- FIN ESTILOS PARA ANCHO DE ELEMENTOS --*/
+
+.botones-editar {
+    display: flex;
+    float: right;
+    margin-top: 3%; 
+}
+
+.botones-editar button {
+    margin-right: 10px;
 }

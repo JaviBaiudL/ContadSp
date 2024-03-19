@@ -27,8 +27,10 @@
                                 <label for="categoria">Categoria:</label>
                                 <InputText id="categoria" class="form-control col-md-6" @bind-Value="categoria.categoria" />
                             </div>
-
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <div class="botones-editar">
+                                <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+                                <a href="listacategorias" class="btn btn-danger btn-sm">Cancelar</a>
+                            </div>
                         </EditForm>
                     }
                 </div>

@@ -19,47 +19,49 @@
                     }
                     else
                     {
-                        <table class="table table-striped">
-                            <thead class="thead-dark">
+                        <div style="overflow: auto;">
+                            <table class="table table-striped">
+                                <thead class="thead-dark">
 
 
-                                <tr>
-                                    <th>Descripción</th>
-                                    <th>Monto Aproximado</th>
-                                    <th>Fecha Último Monto</th>
-                                    <th>Categoría</th>
-                                    <th>Foto</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var articulo in articulos)
-                                {
                                     <tr>
-                                        <td>@articulo.descripcion</td>
-                                        <td>@articulo.monto_aprox</td>
-                                        <td>@articulo.fecha_ultimo_monto</td>
-                                        <td>@(articulo.Categoria != null ? articulo.Categoria.categoria : "Sin categoría")</td>
-                                        <td>
-                                            @if (!string.IsNullOrEmpty(articulo.foto))
-                                            {
-                                                var fileName = Path.GetFileName(articulo.foto);
-                                                <img src="@($"/fotos1/{fileName}")" alt="Foto del artículo" width="100" />
-
-                                            }
-                                            else
-                                            {
-                                                <p>No hay foto disponible</p>
-                                            }
-                                        </td>
-                                        <td>
-                                            <a href="editar-articulo/@articulo.id" class="btn btn-success btn-sm"><span class="oi oi-plus" aria-hidden="true"></span> Editar</a>
-                                            <button class="btn btn-danger" @onclick="() => EliminarArticulo(articulo.id)">Eliminar</button>
-                                        </td>
+                                        <th>Descripción</th>
+                                        <th>Monto Aproximado</th>
+                                        <th>Fecha Último Monto</th>
+                                        <th>Categoría</th>
+                                        <th>Foto</th>
+                                        <th>Acciones</th>
                                     </tr>
-                                }
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach (var articulo in articulos)
+                                    {
+                                        <tr>
+                                            <td>@articulo.descripcion</td>
+                                            <td>@articulo.monto_aprox</td>
+                                            <td>@articulo.fecha_ultimo_monto</td>
+                                            <td>@(articulo.Categoria != null ? articulo.Categoria.categoria : "Sin categoría")</td>
+                                            <td>
+                                                @if (!string.IsNullOrEmpty(articulo.foto))
+                                                {
+                                                    var fileName = Path.GetFileName(articulo.foto);
+                                                    <img src="@($"/fotos1/{fileName}")" alt="Foto del artículo" width="100" />
+
+                                                }
+                                                else
+                                                {
+                                                    <p>No hay foto disponible</p>
+                                                }
+                                            </td>
+                                            <td>
+                                                <a href="editar-articulo/@articulo.id" class="btn btn-edit btn-sm"><span class="oi oi-pencil" aria-hidden="true"></span> Editar</a>
+                                                <button class="btn btn-danger btn-sm" @onclick="() => EliminarArticulo(articulo.id)"><span class="oi oi-trash" aria-hidden="true"></span> Eliminar</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     }
                 </div>
             </div>
