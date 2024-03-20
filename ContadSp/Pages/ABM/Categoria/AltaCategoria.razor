@@ -3,27 +3,34 @@
 @using ContadSp.Repositorios  <!-- Importa los repositorios -->
 @inject IRepositorio<Modelo_ABM_Categoria> repositorio
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <h3 class="text-center">Alta de Categorias</h3>
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3>Nueva Categoria</h3>
+                    </div>
+                    <div class="card-body">
+                        <EditForm Model="@categoria" OnValidSubmit="HandleValidSubmit">
+                            <DataAnnotationsValidator />  <!-- Validador para las anotaciones de datos del modelo -->
+                            <ValidationSummary />  <!-- Resumen de validación para mostrar errores -->
+                            <!-- Grupo de formulario para la entrada de la categoría -->
+                            <div class="form-group">
+                                <label for="categoria">Categoria:</label>
+                                <!-- Campo de entrada de texto para la categoría, vinculado al modelo de categoría -->
+                                <InputText id="categoria" class="form-control form-control-sm" @bind-Value="categoria.categoria" maxlength="40" />
+                            </div>
 
-            <!-- Crea un formulario de edición con el modelo de categoría y un manejador para cuando el formulario es válido -->
-            <EditForm Model="@categoria" OnValidSubmit="HandleValidSubmit">
-                <DataAnnotationsValidator />  <!-- Validador para las anotaciones de datos del modelo -->
-                <ValidationSummary />  <!-- Resumen de validación para mostrar errores -->
-                <!-- Grupo de formulario para la entrada de la categoría -->
-                <div class="form-group">
-                    <label for="categoria">Categoria:</label>
-                    <!-- Campo de entrada de texto para la categoría, vinculado al modelo de categoría -->
-                    <InputText id="categoria" class="form-control form-control-sm" @bind-Value="categoria.categoria" />
+                            <!-- Botón para enviar el formulario -->
+                            <button type="submit" class="btn btn-primary btn-sm boton-guardar">Guardar</button>
+                        </EditForm>
+                    </div>
                 </div>
-
-                <!-- Botón para enviar el formulario -->
-                <button type="submit" class="btn btn-primary">Guardar</button>
-            </EditForm>
+            </div>
         </div>
     </div>
+
+
     <div class="row justify-content-center mt-5">
         <div class="col-md-6">
             <h3 class="text-center">Lista de Categorias</h3>
@@ -59,7 +66,7 @@
 
         </div>
     </div>
-</div>
+
 
 @code {
     private int currentPage = 1;

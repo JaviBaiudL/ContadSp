@@ -19,7 +19,7 @@
 
                         <div class="form-group">
                             <label for="descripcion">Descripción:</label>
-                            <InputTextArea id="descripcion" class="form-control" @bind-Value="articulo.descripcion" />
+                            <InputText id="descripcion" class="form-control" @bind-Value="articulo.descripcion" maxlength="60" />
                         </div>
 
                         <div class="form-group">
@@ -31,7 +31,7 @@
                             <label for="fecha_ultimo_monto">Fecha Último Monto:</label>
                             <InputDate id="fecha_ultimo_monto" class="form-control" @bind-Value="articulo.fecha_ultimo_monto" />
                         </div>
-
+                        <br />
                         <div class="form-group">
                             <label for="foto">Foto:</label>
                             <InputFile id="foto" class="form-control-file" OnChange="OnInputFileChange" />
@@ -45,8 +45,11 @@
                                 <p>No hay foto disponible</p>
                             }
                         </div>
-
-                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        <div class="botones-editar">
+                            <button type="submit" class="btn btn-primary btn-sm">Guardar cambios</button>
+                            <a href="lista-articulos" class="btn btn-danger btn-sm">Cancelar</a>
+                        </div>
+                        
                     </EditForm>
                 </div>
             </div>

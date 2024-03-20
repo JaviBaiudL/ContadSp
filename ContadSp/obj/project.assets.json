@@ -1032,11 +1032,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\ContadSp.csproj",
+      "projectUniqueName": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\ContadSp.csproj",
       "projectName": "ContadSp",
-      "projectPath": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\ContadSp.csproj",
+      "projectPath": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\ContadSp.csproj",
       "packagesPath": "C:\\Users\\fer_a\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\Proyecto\\ContadSp\\obj\\",
+      "outputPath": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

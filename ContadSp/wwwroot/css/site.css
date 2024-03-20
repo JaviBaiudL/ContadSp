@@ -148,3 +148,15 @@ a, .btn-link {
 .botones-editar button {
     margin-right: 10px;
 }
+
+@media (max-width: 1080px) {
+    #icono {
+        display: none; /* Oculta el elemento */
+    }
+}
+
+.boton-guardar {
+    display: flex;
+    float: right;
+    margin-top: 3%;
+}
