@@ -5,72 +5,89 @@
 @using ContadSp.Data
 @inject IRepositorio<Modelo_ABM_Categoria> RepositorioCategorias
 @inject IRepositorio<Modelo_Articulos> RepositorioArticulos
+@inject IJSRuntime JSRuntime
 
-<div class="container">
+<div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h3 class="text-center">Crear Artículo</h3>
-
-            <EditForm Model="nuevoArticulo" OnValidSubmit="HandleValidSubmit">
-                <DataAnnotationsValidator />
-                <ValidationSummary />
-
-                @if (categorias == null)
-                {
-                    <p>Cargando...</p>
-                }
-                else
-                {
-                    <div class="form-group">
-                        <label for="categoria">Categoría:</label>
-                        <InputSelect id="categoria" class="form-control" @bind-Value="nuevoArticulo.id_categoria">
-                            <option value="">Selecciona una categoría</option>
-                            @foreach (var categoria in categorias)
-                            {
-                                <option value="@categoria.id">@categoria.categoria</option>
-                            }
-                        </InputSelect>
-                    </div>
-                }
-
-                <div class="form-group">
-                    <label for="descripcion">Descripción:</label>
-                    <InputText id="descripcion" class="form-control" @bind-Value="nuevoArticulo.descripcion" maxlength="60" />
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                     <h3>Nuevo Artículo</h3>
                 </div>
+                <div class="card-body">
+                    <EditForm Model="nuevoArticulo" OnValidSubmit="HandleValidSubmit">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
 
-                <div class="form-group">
-                    <label for="monto_aprox">Monto Aproximado:</label>
-                    <InputNumber id="monto_aprox" class="form-control" @bind-Value="nuevoArticulo.monto_aprox" />
+                        @if (categorias == null)
+                        {
+                            <p>Cargando...</p>
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                <label for="categoria">Categoría:</label>
+                                <InputSelect id="categoria" class="form-control" @bind-Value="nuevoArticulo.id_categoria">
+                                    <option value="">Selecciona una categoría</option>
+                                    @foreach (var categoria in categorias)
+                                    {
+                                        <option value="@categoria.id">@categoria.categoria</option>
+                                    }
+                                </InputSelect>
+                            </div>
+                        }
+
+                        <div class="form-group">
+                            <label for="descripcion">Descripción:</label>
+                            <InputText id="descripcion" class="form-control" @bind-Value="nuevoArticulo.descripcion" maxlength="60" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="monto_aprox">Monto Aproximado:</label>
+                            <InputNumber id="monto_aprox" class="form-control" @bind-Value="nuevoArticulo.monto_aprox" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fecha_ultimo_monto">Fecha Último Monto:</label>
+                            <InputDate id="fecha_ultimo_monto" class="form-control" @bind-Value="nuevoArticulo.fecha_ultimo_monto" />
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <label for="foto">Foto:</label>
+                            <InputFile id="foto" class="form-control-file" OnChange="OnInputFileChange" />
+                        </div>
+
+                        <div class="boton-guardar">
+                            <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+                        </div>
+
+                    </EditForm>
+
+                    
                 </div>
-
-                <div class="form-group">
-                    <label for="fecha_ultimo_monto">Fecha Último Monto:</label>
-                    <InputDate id="fecha_ultimo_monto" class="form-control" @bind-Value="nuevoArticulo.fecha_ultimo_monto" />
-                </div>
-
-                <div class="form-group">
-                    <label for="foto">Foto:</label>
-                    <InputFile id="foto" class="form-control-file" OnChange="OnInputFileChange" />
-                </div>
-
-                <button type="submit" class="btn btn-primary">Crear</button>
-            </EditForm>
-
-            @if (!string.IsNullOrEmpty(mensajeError))
-            {
-                <div class="alert alert-danger" role="alert">
-                    @mensajeError
-                </div>
-            }
+            </div>
         </div>
     </div>
 </div>
 
+
 @code {
     private Modelo_Articulos nuevoArticulo = new Modelo_Articulos();
     private IEnumerable<Modelo_ABM_Categoria> categorias;
-    private string mensajeError = string.Empty;
     private IBrowserFile selectedFile;
+    private string? mensajeError;
+
+    private async Task Mensaje(int opcion)
+    {
+        if(opcion == 1)
+        {
+            await JSRuntime.InvokeVoidAsync("showSweetAlert", "¡Éxito!", "El artículo se guardó correctamente", "success");
+        }
+        else
+        {
+            await JSRuntime.InvokeVoidAsync("showSweetAlert", "¡Error!", "Hubo un error al guardar el artículo", "error");
+        }
+    }
 
     protected override async Task OnInitializedAsync()
     {
@@ -129,11 +146,11 @@
             // Aquí es donde se guardaría el artículo en la base de datos
             await RepositorioArticulos.Agregar(nuevoArticulo);
             nuevoArticulo = new Modelo_Articulos();
-            mensajeError = string.Empty;
+            await Mensaje(1);
         }
         catch (Exception ex)
         {
-            mensajeError = "Hubo un error al crear el artículo: " + ex.Message;
+           
         }
     }
 }

@@ -61,6 +61,10 @@
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
+      "Id": "C:\\Users\\fer_a\\OneDrive\\Escritorio\\ContadSp\\ContadSp\\wwwroot\\js\\Funciones.js",
+      "PackagePath": "staticwebassets\\js\\Funciones.js"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.ContadSp.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
